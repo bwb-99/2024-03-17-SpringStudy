@@ -1,4 +1,7 @@
 package com.sist.main;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 /*
  * 	XML / Annotation => 클래스를 모아서 관리
  * 	=> 클래스 등록시
@@ -81,10 +84,18 @@ package com.sist.main;
  *          		  | 개별 클래스 (사용자 정의 클래스)
  *          	| 공통 적용되는 클래스(라이브러리 클래스) => DAO / 보안
  */
+import com.sist.goods.*;
+import com.sist.member.*;
+import com.sist.sawon.*;
 public class MainClass {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		//등록된 XML을 컨테이너로 전송
+		ApplicationContext app=new ClassPathXmlApplicationContext("app.xml");
+		// 클래스 찾기 => 활용
+		SawonManager sa=(SawonManger).app
+			
 
 	}
 
