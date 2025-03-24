@@ -4,8 +4,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MemberManager {
-	public void display() {
-		System.out.println("MemberManager:display() call..");
-	}
-
+  public void display()
+  {
+	  System.out.println("MemberManager:display() Call...");
+  }
 }
