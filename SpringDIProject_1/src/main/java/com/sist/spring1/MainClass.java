@@ -5,18 +5,22 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-import net.bytebuddy.description.type.TypeDescription.Generic;
-
 public class MainClass {
+
 	public static void main(String[] args) {
-		//ApplicationContext app= new ClassPathXmlApplicationContext("app3.xml");
-		GenericApplicationContext app=new GenericXmlApplicationContext("app3.xml");
+		// TODO Auto-generated method stub
+        //ApplicationContext app=
+        		//new ClassPathXmlApplicationContext("app3.xml");
+		GenericApplicationContext app=
+				new GenericXmlApplicationContext("app3.xml");
 		
-		Student std=(Student)app.getBean("std");
-		System.out.println("«–π¯:"+std.getHakbun());
-		System.out.println("¿Ã∏ß:"+std.getHuman().getName());
-		System.out.println("º∫∫∞:"+std.getHuman().getSex());
-		System.out.println("¡÷º“:"+std.getHuman().getAddress());
-		app.close();
+        Student std=(Student)app.getBean("std");
+        System.out.println("ÌïôÎ≤à:"+std.getHakbun());
+        System.out.println("Ïù¥Î¶Ñ:"+std.getHuman().getName());
+        System.out.println("ÏÑ±Î≥Ñ:"+std.getHuman().getSex());
+        System.out.println("Ï£ºÏÜå:"+std.getHuman().getAddress());
+        app.close();// System.gc()
+        
 	}
+
 }

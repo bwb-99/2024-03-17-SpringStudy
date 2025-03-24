@@ -22,5 +22,5 @@ public class Member {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-    
+   
 }

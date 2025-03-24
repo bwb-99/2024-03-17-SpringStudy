@@ -1,9 +1,9 @@
 package com.sist.spring1;
 
 public class Student {
-	private int hakbun;
-	private int kor,eng,math;
-	private Human human=new Human();
+    private int hakbun;
+    private int kor,eng,math;
+    private Human human=new Human();
 	public int getHakbun() {
 		return hakbun;
 	}
@@ -35,10 +35,9 @@ public class Student {
 		this.human = human;
 	}
 	public void init() {
-		System.out.println("ÇÐ»ý Á¤º¸");	
-		
-	}public void destroy() {
-		System.out.println("ÇÁ·Î±×·¥ Á¾·á");
+		System.out.println("ì¶œë ¥í•©ë‹ˆë‹¤.");
 	}
-	
+    public void destory() {
+    	System.out.println("í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.");
+    }
 }

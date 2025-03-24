@@ -1,20 +1,22 @@
 package com.sist.main;
 
 public class Sawon {
-	private int sabun;
-	private String name;
-	private String dept;
-	private String loc;
-	private int pay;
-	
-	public Sawon() {}
-	
-	public Sawon(int sabun, String name, String dept, int pay)
-	{
-		
+    private int sabun;
+    private String name;
+    private String dept;
+    private String loc;
+    private int pay;
+    
+    public Sawon(){}
+    
+	public Sawon(int sabun, String name, String dept, String loc, int pay) {
+		this.sabun = sabun;
+		this.name = name;
+		this.dept = dept;
+		this.loc = loc;
+		this.pay = pay;
 	}
-	
-	
+
 	public int getSabun() {
 		return sabun;
 	}
@@ -53,4 +55,5 @@ public class Sawon {
 		System.out.println("±Ù¹«Áö:"+loc);
 		System.out.println("¿¬ºÀ:"+pay);
 	}
+  
 }
