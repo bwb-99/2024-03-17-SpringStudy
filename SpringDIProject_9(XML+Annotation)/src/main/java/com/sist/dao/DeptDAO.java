@@ -9,11 +9,10 @@ import com.sist.mapper.*;
 @Repository("dDao")
 public class DeptDAO {
 	@Autowired
-	private DeptMapper mapper;
+    private DeptMapper mapper;
 	
 	public List<DeptVO> deptListData()
 	{
 		return mapper.deptListData();
 	}
-
 }

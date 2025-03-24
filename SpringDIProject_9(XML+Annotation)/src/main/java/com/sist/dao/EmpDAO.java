@@ -4,12 +4,12 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sist.mapper.*;
+import com.sist.mapper.EmpMapper;
 import com.sist.vo.*;
 @Repository("eDao")
 public class EmpDAO {
 	@Autowired
-	private EmpMapper mapper;
+    private EmpMapper mapper;
 	
 	public List<EmpVO> empListData()
 	{
