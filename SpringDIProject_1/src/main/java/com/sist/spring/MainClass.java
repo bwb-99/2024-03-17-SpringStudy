@@ -7,26 +7,28 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class MainClass {
 
 	public static void main(String[] args) {
-        ApplicationContext app=
-        	 new ClassPathXmlApplicationContext("app2.xml");
-        //       --------- src/main/java
-        Member m1=app.getBean("mem",Member.class);
-        System.out.println("¹øÈ£:"+m1.getMno());
-        System.out.println("ÀÌ¸§:"+m1.getName());
-        System.out.println("ÁÖ¼Ò:"+m1.getAddress());
         
-        Member m2=app.getBean("mem",Member.class);
-        m2.setMno(2);
-        m2.setName("½ÉÃ»ÀÌ");
-        m2.setAddress("°æ±â");
-        
-        System.out.println("¹øÈ£:"+m2.getMno());
-        System.out.println("ÀÌ¸§:"+m2.getName());
-        System.out.println("ÁÖ¼Ò:"+m2.getAddress());
-        
-        System.out.println("¹øÈ£:"+m1.getMno());
-        System.out.println("ÀÌ¸§:"+m1.getName());
-        System.out.println("ÁÖ¼Ò:"+m1.getAddress());
+	  ApplicationContext app=new ClassPathXmlApplicationContext("app2.xml");
+	  
+	  Member m1=app.getBean("mem",Member.class);
+	  System.out.println("ë²ˆí˜¸:"+m1.getMno());
+	  System.out.println("ì´ë¦„:"+m1.getName());
+	  System.out.println("ì£¼ì†Œ"+m1.getAddress());
+	  
+	  Member m2=app.getBean("mem",Member.class);
+	  m2.setMno(2);
+	  m2.setName("ì‹¬ì²­ì´");
+	  m2.setAddress("ê²½ê¸°");
+	  
+	  System.out.println("ë²ˆí˜¸:"+m2.getMno());
+	  System.out.println("ì´ë¦„:"+m2.getName());
+	  System.out.println("ì£¼ì†Œ:"+m2.getAddress());
+	  
+	  System.out.println("ë²ˆí˜¸:"+m1.getMno());
+	  System.out.println("ì´ë¦„:"+m1.getName());
+	  System.out.println("ì£¼ì†Œ"+m1.getAddress());
+	  
+	  
 	}
 
 }

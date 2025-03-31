@@ -49,11 +49,11 @@ public class Sawon {
 	}
 	public void print()
 	{
-		System.out.println("»ç¹ø:"+sabun);
-		System.out.println("ÀÌ¸§:"+name);
-		System.out.println("ºÎ¼­:"+dept);
-		System.out.println("±Ù¹«Áö:"+loc);
-		System.out.println("¿¬ºÀ:"+pay);
+		System.out.println("ì‚¬ë²ˆ:"+sabun);
+		System.out.println("ì´ë¦„:"+name);
+		System.out.println("ë¶€ì„œ:"+dept);
+		System.out.println("ê·¼ë¬´ì§€:"+loc);
+		System.out.println("ì—°ë´‰:"+pay);
 	}
   
 }

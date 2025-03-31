@@ -4,30 +4,30 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /*
- *   ½ºÇÁ¸µ ÇÁ·¹ÀÓ¿öÅ© 
- *   ------------
- *   1. Container : Å¬·¡½º¸¦ ¸ğ¾Æ¼­ °ü¸® 
- *      BeanFactory : core (°´Ã¼ »ı¼º / DI) 
+ *  ìŠ¤í”„ë§ í”„ë ˆì„ ì›Œí¬
+ *  --------------
+ *  1. Container : í´ë˜ìŠ¤ë¥¼ ëª¨ì•„ì„œ ê´€ë¦¬
+ *     BeanFactory : core(ê°ì²´ ìƒì„± / DI)
  *         |
- *     ApplicationContext : default  core (°´Ã¼ »ı¼º / DI / AOP) 
+ *     ApplicationContext : default core (ê°ì²´ ìƒì„± / DI / AOP)
  *         |
- *    WebApplicationContext : core (°´Ã¼ »ı¼º / DI / AOP / MVC) 
- *    
- *    => GenericApplicationContext => ´İ±â (°´Ã¼ ¼Ò¸ê) 
- *    => AnnotationConfigApplicationContext 
- *       => 5¹öÀü ÁÖ·Î »ç¿ë
- *          ---- º¸¾È¿¡ ÁÖ·Â 
- *          µî·Ï : XML => ¼ø¼öÀÚ¹Ù ¼³Á¤ÀÌ °¡´É 
- *                       ----- Boot  
- *      ±â´É 
- *       = °´Ã¼ »ı¸íÁÖ±â °ü¸® (»ı¼º ~ ¼Ò¸ê) => ¸ğµç Å¬·¡½º (VO=>µ¥ÀÌÅÍÇü)
- *       = °´Ã¼ Ã£±â (getBean())
- *       = DL(°´Ã¼ Ã£±â) / DI (º¯¼öÀÇ ÃÊ±âÈ­)
- *                      --------------
- *                      1. setter
- *                      2. contstructor 
- *                      3. methodÈ£ÃâÀÌ °¡´É 
- *     ---------------------------------------------------- 
+ *     WebApplicationContext : core (ê°ì²´ ìƒì„± / DI / AOP / MVC)
+ *     
+ *     => GenericApplicationContext => ë‹«ê¸° (ê°ì²´ ì†Œë©¸)
+ *     => AnnotationConfigApplicationContext
+ *        => 5ë²„ì „ ì£¼ë¡œ ì‚¬ìš©
+ *        	 ---- ë³´ì•ˆì— ì£¼ë ¥
+ *           ë“±ë¡ : XML => ìˆœìˆ˜ìë°” ì„¤ì •ì´ ê°€ëŠ¥
+ *           			  ------ Boot
+ *        ê¸°ëŠ¥ 
+ *         = ê°ì²´ ìƒëª…ì£¼ê¸° ê´€ë¦¬(ìƒì„± ~ ì†Œë©¸) => ëª¨ë“  í´ë˜ìŠ¤ (VO => ë°ì´í„°í˜•)
+ *         = ê°ì²´ ì°¾ê¸° (getBean())
+ *         = DL(ê°ì²´ ì°¾ê¸°) / DI (ë³€ìˆ˜ì˜ ì´ˆê¸°í™”)
+ *         				  ---------------
+ *         				  1.setter
+ *          		      2. contstructor
+ *          			  3. method í˜¸ì¶œì´ ê°€ëŠ¥
+ *     ---------------------------------------
  */
 public class MainClass {
 
