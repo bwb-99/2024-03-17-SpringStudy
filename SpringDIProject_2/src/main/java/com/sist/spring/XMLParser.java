@@ -7,19 +7,19 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /*
- *   XML ÆÄ½Ì 
+ *   XML íŒŒì‹± 
  *     = DOM 
- *       ¼Óµµ°¡ ´Ê´Ù => ¸Ş¸ğ¸® Æ®¸® ÇüÅÂ·Î ÀúÀå / CRUD 
+ *       ì†ë„ê°€ ëŠ¦ë‹¤ => ë©”ëª¨ë¦¬ íŠ¸ë¦¬ í˜•íƒœë¡œ ì €ì¥ / CRUD 
  *     = SAX : MyBatis / Spring 
- *       ¼Óµµ°¡ ºü¸£´Ù => ÅÂ±×ÀÇ °ª/¼Ó¼º °ª¸¸ ÀĞ±â 
- *       ÀÌº¥Æ® 
+ *       ì†ë„ê°€ ë¹ ë¥´ë‹¤ => íƒœê·¸ì˜ ê°’/ì†ì„± ê°’ë§Œ ì½ê¸° 
+ *       ì´ë²¤íŠ¸ 
  *       
  *          <?xml version="1.0" encoding="UTF-8"?> startDocument()
 			<beans> startElement()
 			  <bean id="sa" class="com.sist.spring.Sawon"> startElement()
-			    <property name="name" value="È«±æµ¿"/>
+			    <property name="name" value="í™ê¸¸ë™"/>
 			    startElement()               endElement()
-			    <property name="sex" value="³²ÀÚ"/>
+			    <property name="sex" value="ë‚¨ì"/>
 			    startElement()               endElement()
 			    <property name="age" value="25"/>
 			    startElement()               endElement()
@@ -41,15 +41,15 @@ public class XMLParser extends DefaultHandler{
 				String cls=attributes.getValue("class");
 				clsName=Class.forName(cls);
 				obj=clsName.getDeclaredConstructor().newInstance();
-				// Å¬·¡½ºÀÌ¸§À¸·Î Á¦¾î (º¯¼öÁÖÀÔ , °´Ã¼ »ı¼º / ¸Ş¼ÒÁî È£Ãâ)
-				clsMap.put(id, obj); // »ç¿ë½Ã¿¡´Â Çüº¯È¯ 
+				// í´ë˜ìŠ¤ì´ë¦„ìœ¼ë¡œ ì œì–´ (ë³€ìˆ˜ì£¼ì… , ê°ì²´ ìƒì„± / ë©”ì†Œì¦ˆ í˜¸ì¶œ)
+				clsMap.put(id, obj); // ì‚¬ìš©ì‹œì—ëŠ” í˜•ë³€í™˜ 
 			}
 			// DI => setter DI
 			if(qName.equals("property"))
 			{
 				String name=attributes.getValue("name");
 				String value=attributes.getValue("value");
-				// Method È£Ãâ => setName setSex setAge
+				// Method í˜¸ì¶œ => setName setSex setAge
 				Method[] methods=clsName.getDeclaredMethods();
 				for(Method m:methods)
 				{
@@ -62,7 +62,7 @@ public class XMLParser extends DefaultHandler{
 						else
 						{
 							m.invoke(obj,value);
-							// sa.setName("È«±æµ¿")
+							// sa.setName("í™ê¸¸ë™")
 						}
 					}
 				}

@@ -7,8 +7,8 @@ import lombok.Data;
 /*
  *   xml
  *   	application-datasource.xml : DB
- *      application-context.xml : »ç¿ëÀÚ Á¤ÀÇ Å¬·¡½º / MVC
- *      applicaton-security.xml : º¸¾È
+ *      application-context.xml : ìŠ¤í”„ë§ë¹ˆ ì„¤ì •  / MVC
+ *      applicaton-security.xml : ë³´ì•ˆ(Security)
  * 
  */
 @Data

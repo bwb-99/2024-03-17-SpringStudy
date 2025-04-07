@@ -24,9 +24,9 @@ public class Sawon {
 	}
 	public void print()
 	{
-		System.out.println("ÀÌ¸§:"+name);
-		System.out.println("¼ºº°:"+sex);
-		System.out.println("³ªÀÌ:"+age);
+		System.out.println("ì´ë¦„:"+name);
+		System.out.println("ì„±ë³„:"+sex);
+		System.out.println("ë‚˜ì´:"+age);
 	}
   
 }
