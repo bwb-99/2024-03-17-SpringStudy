@@ -25,4 +25,9 @@ public class EmpDAO {
 		return mapper.empListData();
 	}
 	
+	public List<DeptVO> deptListData()
+	{
+		return mapper.deptListData();
+	}
+	
 }

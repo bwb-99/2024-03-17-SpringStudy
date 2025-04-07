@@ -11,4 +11,6 @@ public interface EmpMapper {
 	public List<EmpVO> empListData();
 	//List(select), VO(selectOne)
 	// Row 여러개인 경우, Row가 한개인 경우
+	@Select("SELECT * FROM dept")
+	public List<DeptVO> deptListData();
 }
