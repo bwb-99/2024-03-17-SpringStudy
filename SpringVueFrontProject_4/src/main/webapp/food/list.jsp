@@ -28,7 +28,7 @@ p{
      <div class="row">
        <div class="col-md-3" v-for="vo in food_list">
 	    <div class="thumbnail">
-	      <a href="'../food/detail.do?no='+vo.fno">
+	      <a :href="'../food/detail.do?no='+vo.fno">
 	        <img :src="'https://www.menupan.com'+vo.poster" style="width:230px;height:250px">
 	        <div class="caption">
 	          <p>{{vo.name}}</p>
@@ -80,7 +80,7 @@ p{
    			}).then(response=>{
    				console.log(response.data)
    				this.food_list=response.data.list
-   				this.curpag=response.data.curpage
+   				this.curpage=response.data.curpage
    				this.totalpage=response.data.totalpage
    			})	
    		 }

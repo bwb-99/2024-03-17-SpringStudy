@@ -39,15 +39,15 @@ public class FoodDAO {
 			+ "FROM (SELECT +INDEX_ASC(project_food pf_fno_pk)fno,poster,name "
 			+ "FROM project_food WHERE name LIKE '%'||#{fd}||'%')) "
 			+ "WHERE num BETWEEN #{start} AND #{end}")
-		public List<FoodVO> foodFindData(Map map);
+		public List<FoodVO> foodFindListData(Map map);
 		
 		@Select("SELECT CEIL(COUNT(*)/12.0) FROM project_food "
 				+ "WHERE name LIKE '%'||#{fd}'%'")
 		public int foodFindTotalPage(String fd);
 	 */
-	public  List<FoodVO> foodFindData(Map map)
+	public  List<FoodVO> foodFindListData(Map map)
 	{
-		return mapper.foodFindData(map);
+		return mapper.foodFindListData(map);
 	}
 	public int foodFindTotalPage(String fd)
 	{
