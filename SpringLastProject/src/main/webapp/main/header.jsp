@@ -133,21 +133,30 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">부산 특산물</a>
+                                    <a class="nav-link" href="../movie/list.do">여행 동영상</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="../reserve/main.do">빠른예약</a>
+                                    <a class="nav-link" href="../goods/list.do">부산 특산물</a>
                                 </li>
-                                
+                                <%--
+                                      v-if="id===${sessionScope.userid}"
+                                      
+                                      no:${no}
+                                 --%>
+                                <c:if test="${sessionScope.userid!=null }">
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="../reserve/main.do">빠른 예약</a>
+                                  </li>
+                                </c:if>
                                     <sec:authorize access="hasRole('ROLE_USER')">
 	                                 <li class="nav-item">
-	                                    <a class="nav-link" href="archive.html">마이페이지</a>
+	                                    <a class="nav-link" href="../mypage/reserve_list.do">마이페이지</a>
 	                                 </li>
 	                                </sec:authorize>
 	                                
 	                                <sec:authorize access="hasRole('ROLE_ADMIN')">
 	                                 <li class="nav-item">
-	                                    <a class="nav-link" href="../main/delete.do">관리자페이지</a>
+	                                    <a class="nav-link" href="../adminpage/reserve_list.do">관리자페이지</a>
 	                                 </li>
 	                                </sec:authorize>
                                
