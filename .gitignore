@@ -1,0 +1,5 @@
+/target/
+*/target/*
+pom.properties
+/build/
+MANIFEST.MF
