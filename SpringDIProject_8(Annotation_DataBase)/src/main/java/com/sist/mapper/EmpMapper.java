@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Select;
 
 import com.sist.vo.*;
 public interface EmpMapper {
-  // ¢¬¸ñ·ÏÃâ·Â
+  // ëª©ë¡ ì¶œë ¥
   @Select("SELECT empno,ename,job,hiredate,sal "
 		 +"FROM emp")
   public List<EmpVO> empListData();

@@ -12,12 +12,12 @@ public interface EmpMapper {
     *   </select>
     *   @Select("SELECT empno,ename,job,sal,TO_CHAR(hiredate,'YYYY-MM-DD') as dbday
     *     FROM emp")
-    *   public List<EmpVO> empListData(); => ÀÚµ¿ ±¸Çö 
+    *   public List<EmpVO> empListData(); => ìë™ êµ¬í˜„ 
     */
 	@Select("SELECT empno,ename,job,sal,"
 		   +"TO_CHAR(hiredate,'YYYY-MM-DD') as dbday "
 		   +"FROM emp")
 	public List<EmpVO> empListData();
 	//     resultType     id      parameterType
-	//     ==> ¸Å°³º¯¼ö¸¦ ¿©·¯°³ »ç¿ëÀÌ °¡´É 
+	//     ==> ë§¤ê°œë³€ìˆ˜ë¥¼ ì—¬ëŸ¬ê°œ ì‚¬ìš©ì´ ê°€ëŠ¥ 
 }

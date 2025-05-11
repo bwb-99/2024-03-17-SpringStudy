@@ -23,12 +23,12 @@ public class MainClass {
         }
         
         Scanner scan=new Scanner(System.in);
-        System.out.print("»ç¹ø:");
+        System.out.print("Â»ì‚¬ë²ˆ:");
         int empno=scan.nextInt();
         EmpVO vo=dao.empDetailData(empno);
-        System.out.println("ÀÌ¸§:"+vo.getEname());
-        System.out.println("Á÷À§:"+vo.getJob());
-        System.out.println("±Ş¿©:"+vo.getSal());
+        System.out.println("ì´ë¦„:"+vo.getEname());
+        System.out.println("ì§ìœ„:"+vo.getJob());
+        System.out.println("ê¸‰ì—¬:"+vo.getSal());
 	}
 
 }
