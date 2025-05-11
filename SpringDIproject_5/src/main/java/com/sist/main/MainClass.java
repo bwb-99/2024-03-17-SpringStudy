@@ -3,88 +3,88 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /*
- *   XML / Annotation => Å¬·¡½º¸¦ ¸ð¾Æ¼­ °ü¸®
- *   => Å¬·¡½º µî·Ï½Ã 
- *      -------- 1) ±â´ÉÀ» °¡Áö°í ÀÖ´Â Å¬·¡½º (ÄÄÆ÷³ÍÆ®)
- *                                      | ÄÁÅ×ÀÌ³Ê (½ºÇÁ¸µ)
+ *   XML / Annotation => í´ëž˜ìŠ¤ë¥¼ ëª¨ì•„ì„œ ê´€ë¦¬
+ *   => í´ëž˜ìŠ¤ ë“±ë¡ì‹œ 
+ *      -------- 1) ê¸°ëŠ¥ì„ ê°€ì§€ê³  ìžˆëŠ” í´ëž˜ìŠ¤ (ì»´í¬ë„ŒíŠ¸)
+ *                                      | ì»¨í…Œì´ë„ˆ (ìŠ¤í”„ë§)
  *                  DAO / Manager / Service / Model 
- *                  VO (DTO,Bean) => »ç¿ëÀÚ µ¥ÀÌÅÍÇü (X) 
- *      Å¬·¡½º µî·Ï 
- *       <bean id="" class=""> : ¸Þ¸ð¸® ÇÒ´çÈÄ¿¡ ÀúÀå 
- *        => singleton : ÇÑ°³ÀÇ ¸Þ¸ð¸®·Î Àç»ç¿ë
- *        => ¿©·¯°³ »ý¼º : prototype => º¹Á¦ÇØ¼­ »õ·Î¿î ¸Þ¸ð¸® »ý¼º 
+ *                  VO (DTO,Bean) => ì‚¬ìš©ìž ë°ì´í„°í˜• (X) 
+ *      í´ëž˜ìŠ¤ ë“±ë¡ 
+ *       <bean id="" class=""> : ë©”ëª¨ë¦¬ í• ë‹¹í›„ì— ì €ìž¥ 
+ *        => singleton : í•œê°œì˜ ë©”ëª¨ë¦¬ë¡œ ìž¬ì‚¬ìš©
+ *        => ì—¬ëŸ¬ê°œ ìƒì„± : prototype => ë³µì œí•´ì„œ ìƒˆë¡œìš´ ë©”ëª¨ë¦¬ ìƒì„± 
  *           <bean id="" class="" scope="prototype">
  *                      => Object clone()
- *        => <bean id="" class=""> => ±âº» µðÆúÆ® »ý¼ºÀÚ È£Ãâ 
- *        => id´Â Å¬·¡½º¸¦ Ã£±â À§ÇÑ ±¸ºÐÀÚ => ¹Ýµå½Ã Áßº¹¾øÀÌ ¼³Á¤ 
- *        => ÄÁÅ×ÀÌ³Ê¾È¿¡ ÀúÀå 
- *           ===== ½ºÇÁ¸µ¿¡¼­ Áö¿ø 
- *                 BeanFactory : core(DI, °´Ã¼ »ý¼º / °´Ã¼ ¼Ò¸ê) 
+ *        => <bean id="" class=""> => ê¸°ë³¸ ë””í´íŠ¸ ìƒì„±ìž í˜¸ì¶œ 
+ *        => idëŠ” í´ëž˜ìŠ¤ë¥¼ ì°¾ê¸° ìœ„í•œ êµ¬ë¶„ìž => ë°˜ë“œì‹œ ì¤‘ë³µì—†ì´ ì„¤ì • 
+ *        => ì»¨í…Œì´ë„ˆì•ˆì— ì €ìž¥ 
+ *           ===== ìŠ¤í”„ë§ì—ì„œ ì§€ì› 
+ *                 BeanFactory : core(DI, ê°ì²´ ìƒì„± / ê°ì²´ ì†Œë©¸) 
  *                     |
- *               ApplicationContext : +AOP , ±¹Á¦È­
- *               ------------------- XML·Î µî·ÏµÈ °æ¿ì 
+ *               ApplicationContext : +AOP , êµ­ì œí™”
+ *               ------------------- XMLë¡œ ë“±ë¡ëœ ê²½ìš° 
  *               AnnotationConfigApplicationContext 
- *               ---------------------------------- ÀÚ¹Ù·Î ¼³Á¤ (º¸¾È)
- *                 | 5¹öÀü ÀÌ»ó¿¡¼­ ¸¹ÀÌ ±ÇÀå
+ *               ---------------------------------- ìžë°”ë¡œ ì„¤ì • (ë³´ì•ˆ)
+ *                 | 5ë²„ì „ ì´ìƒì—ì„œ ë§Žì´ ê¶Œìž¥
  *                     |
  *            WebApplicationContext : +MVC (WEB) => Controller
  *                                                  ----------
  *                                                  DispatcherServlet
- *                                                  | Ã³¸® ¸Þ¼Òµå Ã£±â
+ *                                                  | ì²˜ë¦¬ ë©”ì†Œë“œ ì°¾ê¸°
  *                                                    ------------
  *                                                    @RequestMapping
- *                                                     => GET/POST µ¿½Ã
+ *                                                     => GET/POST ë™ì‹œ
  *                                                    @GetMapping
  *                                                    @PostMapping 
- *          Spring¿¡¼­ Áö¿ø (ÀÔ»ç½Ã => °øÅë±â¹Ý) => Basic : ¿©·¯¸íÀÌ µ¿½Ã °³¹ß 
- *              À¯Áöº¸¼ö ±â¹Ý 
+ *          Springì—ì„œ ì§€ì› (ìž…ì‚¬ì‹œ => ê³µí†µê¸°ë°˜) => Basic : ì—¬ëŸ¬ëª…ì´ ë™ì‹œ ê°œë°œ 
+ *              ìœ ì§€ë³´ìˆ˜ ê¸°ë°˜ 
  *            = DI => 70%
- *            = AOP => ¹Ýº¹ Á¦°Å (°øÅë±â¹ÝÀÇ Å¬·¡½º)
- *            = ORM => µ¥ÀÌÅÍº£ÀÌ½º ¿¬µ¿ (MyBatis,JPA,Hibernate)
+ *            = AOP => ë°˜ë³µ ì œê±° (ê³µí†µê¸°ë°˜ì˜ í´ëž˜ìŠ¤)
+ *            = ORM => ë°ì´í„°ë² ì´ìŠ¤ ì—°ë™ (MyBatis,JPA,Hibernate)
  *            = MVC 
  *            = Security 
  *            
- *          1) DI => ÁÖÀÔ 
+ *          1) DI => ì£¼ìž… 
  *             -- IoC => DI
- *                --- Á¦¾îÀÇ ¿ªÀü (¸¶Æ¾ÆÄ¿ï·¯) => AI
- *                ¹üÀ§ => Å¬·¡½º¿Í Å¬·¡½ºÀÇ ¿¬°ü °ü°è¸¦ ¼³Á¤ (Å¬·¡½º ´ÙÀÌ¾î±×·¥)
- *                       => p:°´Ã¼¸í-ref="id¸í"
- *                       Å¬·¡½º¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ ÁÖÀÔ 
+ *                --- ì œì–´ì˜ ì—­ì „ (ë§ˆí‹´íŒŒìš¸ëŸ¬) => AI
+ *                ë²”ìœ„ => í´ëž˜ìŠ¤ì™€ í´ëž˜ìŠ¤ì˜ ì—°ê´€ ê´€ê³„ë¥¼ ì„¤ì • (í´ëž˜ìŠ¤ ë‹¤ì´ì–´ê·¸ëž¨)
+ *                       => p:ê°ì²´ëª…-ref="idëª…"
+ *                       í´ëž˜ìŠ¤ì— í•„ìš”í•œ ë°ì´í„° ì£¼ìž… 
  *                       --------------------
- *                       => p:º¯¼ö¸í="°ª"
+ *                       => p:ë³€ìˆ˜ëª…="ê°’"
  *                          -----------
  *                          setter / constructor
- *                          --------------------- XML¿¡¼­¸¸ °¡´É 
- *                          ¾î³ëÅ×ÀÌ¼Ç¿¡¼­´Â »ç¿ëÀÌ ºÒ°¡´É 
- *            Å¬·¡½º ÇÑ°³ ¸Þ¸ð¸® ÇÒ´ç 
+ *                          --------------------- XMLì—ì„œë§Œ ê°€ëŠ¥ 
+ *                          ì–´ë…¸í…Œì´ì…˜ì—ì„œëŠ” ì‚¬ìš©ì´ ë¶ˆê°€ëŠ¥ 
+ *            í´ëž˜ìŠ¤ í•œê°œ ë©”ëª¨ë¦¬ í• ë‹¹ 
  *              <bean> 
- *            Å¬·¡½º ¿©·¯°³¸¦ ÇÑ¹ø¿¡ ¸Þ¸ð¸® ÇÒ´ç 
+ *            í´ëž˜ìŠ¤ ì—¬ëŸ¬ê°œë¥¼ í•œë²ˆì— ë©”ëª¨ë¦¬ í• ë‹¹ 
  *              <context:component-scan basepackage="">
- *              => ¼±º°ÇØ¼­ ¸Þ¸ð¸® ÇÒ´ç ¿äÃ» 
- *                       ------------- ¸Þ¸ð¸®¿¡ ÇÒ´çµÈ °´Ã¼¸¸ ½ºÇÁ¸µÀÌ °ü¸®
- *                 @Controller : Model Å¬·¡½º / ¿äÃ»Ã³¸® => Web 
- *                 @Component : ÀÏ¹Ý Å¬·¡½º => MainClass ..
- *                 @Repository : ÀúÀå¼Ò => DAO
- *                 @Service : BI => ÅëÇÕ  (DAO¸¦ ¿©·¯°³¸¦ ÇÑ¹ø ÅëÇÕ½Ã¿¡ ÁÖ·Î »ç¿ë)
+ *              => ì„ ë³„í•´ì„œ ë©”ëª¨ë¦¬ í• ë‹¹ ìš”ì²­ 
+ *                       ------------- ë©”ëª¨ë¦¬ì— í• ë‹¹ëœ ê°ì²´ë§Œ ìŠ¤í”„ë§ì´ ê´€ë¦¬
+ *                 @Controller : Model í´ëž˜ìŠ¤ / ìš”ì²­ì²˜ë¦¬ => Web 
+ *                 @Component : ì¼ë°˜ í´ëž˜ìŠ¤ => MainClass ..
+ *                 @Repository : ì €ìž¥ì†Œ => DAO
+ *                 @Service : BI => í†µí•©  (DAOë¥¼ ì—¬ëŸ¬ê°œë¥¼ í•œë²ˆ í†µí•©ì‹œì— ì£¼ë¡œ ì‚¬ìš©)
  *                            EmpDAO / DeptDAO 
- *                            ---------------- Á¶ÀÎ / ¼­ºêÄõ¸®
- *                 @RestController : ´Ù¸¥ ÇÁ·Î±×·¥ ¿¬µ¿ 
- *                                   ---------- ÀÚ¹Ù½ºÅ©¸³Æ® (JSON) => WEB
+ *                            ---------------- ì¡°ì¸ / ì„œë¸Œì¿¼ë¦¬
+ *                 @RestController : ë‹¤ë¥¸ í”„ë¡œê·¸ëž¨ ì—°ë™ 
+ *                                   ---------- ìžë°”ìŠ¤í¬ë¦½íŠ¸ (JSON) => WEB
  *                                              ---------------
  *                                              | VueJS
- *                 @ControllerAdvice : °øÅë ¿¹¿ÜÃ³¸® 
- *                 @RestControllerAdvice : °øÅë ¿¹¿ÜÃ³¸® 
- *                 @Bean : ÀÚ¹Ù·Î Å¬·¡½º ¼³Á¤ 
+ *                 @ControllerAdvice : ê³µí†µ ì˜ˆì™¸ì²˜ë¦¬ 
+ *                 @RestControllerAdvice : ê³µí†µ ì˜ˆì™¸ì²˜ë¦¬ 
+ *                 @Bean : ìžë°”ë¡œ í´ëž˜ìŠ¤ ì„¤ì • 
  *                  <bean>
  *                 ----------------------
  *                 
- *                 1. Å¬·¡½º¸¦ ÇÑ°³¾¿ ¹æ½Ä <bean> 
+ *                 1. í´ëž˜ìŠ¤ë¥¼ í•œê°œì”© ë°©ì‹ <bean> 
  *                    XML
- *                 2. ¸ðµç Å¬·¡½º¸¦ ÇÑ¹ø¿¡ µî·Ï : ÆÐÅ°Áö ´ÜÀ§
+ *                 2. ëª¨ë“  í´ëž˜ìŠ¤ë¥¼ í•œë²ˆì— ë“±ë¡ : íŒ¨í‚¤ì§€ ë‹¨ìœ„
  *                    Annotation 
- *                 3. XML + Annotation : ½ÇÁ¦ »ç¿ë
- *                          | °³º° Å¬·¡½º (»ç¿ëÀÚ Á¤ÀÇ Å¬·¡½º)
- *                     | °øÅë Àû¿ëµÇ´Â Å¬·¡½º (¶óÀÌºê·¯¸® Å¬·¡½º) => DAO / º¸¾È
+ *                 3. XML + Annotation : ì‹¤ì œ ì‚¬ìš©
+ *                          | ê°œë³„ í´ëž˜ìŠ¤ (ì‚¬ìš©ìž ì •ì˜ í´ëž˜ìŠ¤)
+ *                     | ê³µí†µ ì ìš©ë˜ëŠ” í´ëž˜ìŠ¤ (ë¼ì´ë¸ŒëŸ¬ë¦¬ í´ëž˜ìŠ¤) => DAO / ë³´ì•ˆ
  *            
  */
 import com.sist.goods.*;
@@ -94,10 +94,10 @@ public class MainClass {
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-        // µî·ÏÇÑ XMLÀ» ÄÁÅ×ÀÌ³Ê·Î Àü¼Û 
+        // ë“±ë¡í•œ XMLì„ ì»¨í…Œì´ë„ˆë¡œ ì „ì†¡ 
 		ApplicationContext app=
 				new ClassPathXmlApplicationContext("app.xml");
-		// Å¬·¡½º Ã£±â => È°¿ë 
+		// í´ëž˜ìŠ¤ ì°¾ê¸° => í™œìš© 
 		SawonManager sa=(SawonManager)app.getBean("sa");
 		sa.display();
 		MemberManager mem=(MemberManager)app.getBean("mem");

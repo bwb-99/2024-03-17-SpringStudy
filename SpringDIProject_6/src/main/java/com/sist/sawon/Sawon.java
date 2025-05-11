@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sawon {
     private int sabun=1;
-    private String name="È«±æµ¿";
+    private String name="홍길동";
 	public int getSabun() {
 		return sabun;
 	}

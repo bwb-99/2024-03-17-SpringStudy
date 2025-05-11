@@ -7,10 +7,10 @@ import com.sist.sawon.*;
 @Component("mem")
 //Target(value={type})
 /*
- * 		¾î³ëÅ×ÀÌ¼Ç => ±¸ºĞÀÚ
- * 		TYPE => Å©·¡½º ±¸ºĞ
+ * 		ì–´ë…¸í…Œì´ì…˜ => êµ¬ë¶„ì
+ * 		TYPE => í¬ë˜ìŠ¤ êµ¬ë¶„
  * 		class A
- * 		{	// º¯¼ö ±¸ºĞ => FIELD
+ * 		{	// ë³€ìˆ˜ êµ¬ë¶„ => FIELD
  * 			B b;
  * 			public A(){}
  * 			public void setB(B b) {} 
@@ -18,7 +18,7 @@ import com.sist.sawon.*;
  * 		}
  */
 public class Member {
-	@Autowired // °´Ã¼¸¦ Ã£¾Æ¼­ ÁÖ¼Ò°ªÀ» ´ëÀÔ ¾øÀ¸¸é ÁÖ¼Ò°ª = null
+	@Autowired // ê°ì²´ë¥¼ ì°¾ì•„ì„œ ì£¼ì†Œê°’ì„ ëŒ€ì… ì—†ìœ¼ë©´ ì£¼ì†Œê°’ = null
 
 	/*
 	 *   CONSTRUCTOR,
@@ -28,7 +28,7 @@ public class Member {
 	 *   ANNOTATION_TYPE
 	 */
 
-	private Sawon sawon; //sawonÀÇ °´Ã¼¸¦ Ã£¾Æ¼­ ÁÖ¼Ò°ªÀ» ´ëÀÔ
+	private Sawon sawon; //sawonì˜ ê°ì²´ë¥¼ ì°¾ì•„ì„œ ì£¼ì†Œê°’ì„ ëŒ€ì…
 	
 	public void setSawon(Sawon sawon) {
 		this.sawon = sawon;
@@ -38,8 +38,8 @@ public class Member {
 	public void display()
 	{	
 		System.out.println("sawon:"+sawon);
-		System.out.println("»ç¹ø:"+sawon.getSabun());
-		System.out.println("ÀÌ¸§:"+sawon.getName());
+		System.out.println("ì‚¬ë²ˆ:"+sawon.getSabun());
+		System.out.println("ì´ë¦„:"+sawon.getName());
 	}
 
 }

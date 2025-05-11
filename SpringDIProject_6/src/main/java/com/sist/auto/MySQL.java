@@ -8,13 +8,13 @@ public class MySQL implements DAO{
 	@Override
 	public void connection() {
 		// TODO Auto-generated method stub
-		System.out.println("MySQL ¿¬°á");
+		System.out.println("MySQL 연결");
 	}
 
 	@Override
 	public void close() {
 		// TODO Auto-generated method stub
-		System.out.println("MySQL ÇØÁ¦");
+		System.out.println("MySQL 비연결");
 	}
 
 }

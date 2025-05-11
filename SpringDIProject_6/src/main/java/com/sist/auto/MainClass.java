@@ -6,16 +6,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 /*
- *   POJO¹æ½ÄÀ» ÁÖ·Î »ç¿ë 
- *   ---- ÀÏ¹ÝÀÚ¹Ù => ÀÎÅÍÆäÀÌ½º/»ó¼ÓÀÌ ¾ø´Â µ¶¸³µÈ Å¬·¡½º 
+ *   POJOë°©ì‹ì„ ì£¼ë¡œ ì‚¬ìš© 
+ *   ---- ì¼ë°˜ìžë°” => ì¸í„°íŽ˜ì´ìŠ¤/ìƒì†ì´ ì—†ëŠ” ë…ë¦½ëœ í´ëž˜ìŠ¤ 
  */
 @Component
 public class MainClass {
-	// ½Ç¹« => @Autowird+@Qualifier = @Resource
+	// ì‹¤ë¬´ => @Autowird+@Qualifier = @Resource
    @Autowired
-   // ¹Ýµå½Ã ½ºÇÁ¸µ¿¡¼­ ¸Þ¸ð¸®°¡ ÇÒ´çÀÌ µÇ´Â µ²¿ì¿¡¸¸ »ç¿ëÀÌ °¡´É 
+   // ë°˜ë“œì‹œ ìŠ¤í”„ë§ì—ì„œ ë©”ëª¨ë¦¬ê°€ í• ë‹¹ì´ ë˜ëŠ” ëŽ¡ìš°ì—ë§Œ ì‚¬ìš©ì´ ê°€ëŠ¥ 
    @Qualifier(value = "mySQL")
-   // °°Àº ÇüÅÂÀÇ Å¬·¡½º°¡ ¿©·¯°³ÀÎ °æ¿ì¿¡ Æ¯Á¤°´Ã¼ ÁöÁ¤ 
+   // ê°™ì€ í˜•íƒœì˜ í´ëž˜ìŠ¤ê°€ ì—¬ëŸ¬ê°œì¸ ê²½ìš°ì— íŠ¹ì •ê°ì²´ ì§€ì • 
    private DAO dao;
    // DAO dao=new Oracle() / dao=new MySQL()
    public static void main(String[] args) {
