@@ -44,8 +44,8 @@ public class EmpDAO {
 	   }catch(Exception ex) {}
    }
    
-   // ±â´É ¼³Á¤ 
-   // => ¸ñ·Ï Ãâ·Â => Around  => È£ÃâµÈ ¸Ş¼Òµå / ¼öÇà ½Ã°£  
+   // ê¸°ëŠ¥ ì„¤ì • 
+   // => ëª©ë¡ ì¶œë ¥ => Around  => í˜¸ì¶œëœ ë©”ì†Œë“œ / ìˆ˜í–‰ ì‹œê°„  
    public List<EmpVO> empListData()	
    {
 	   List<EmpVO> list=new ArrayList<EmpVO>();
@@ -70,7 +70,7 @@ public class EmpDAO {
 	   }catch(Exception ex){}
 	   return list;
    }
-   // => »ó¼¼º¸±â  => Around
+   // => ìƒì„¸ë³´ê¸°  => Around
    public EmpVO empDetailData(int empno)
    {
 	   EmpVO vo=new EmpVO();
@@ -93,6 +93,6 @@ public class EmpDAO {
 	   // disConnection  => after 
 	   return  vo;
    }
-   // => ¸®ÅÏÇü Ã³¸® / ¿¡·¯ Ã³¸® / 
+   // => ë¦¬í„´í˜• ì²˜ë¦¬ / ì—ëŸ¬ ì²˜ë¦¬ / 
    
 }

@@ -35,7 +35,7 @@ import org.springframework.stereotype.Component;
       </aop:aspect>
  */
 import com.sist.dao.*;
-@Aspect // ¸Þ¸ð¸® ÇÒ´çÀ» ÇÒ ¼ö ¾ø´Ù 
+@Aspect // ë©”ëª¨ë¦¬ í• ë‹¹ì„ í•  ìˆ˜ ì—†ë‹¤ 
 @Component
 public class EmpAspect {
 	/*
@@ -60,19 +60,19 @@ public class EmpAspect {
   public Object around(ProceedingJoinPoint jp) throws
   Throwable
   {
-	  System.out.println("»ç¿ëÀÚ°¡ È£ÃâÇÑ ¸Þ¼Òµå:"+jp.getSignature().getName());
+	  System.out.println("ì‚¬ìš©ìžê°€ í˜¸ì¶œí•œ ë©”ì†Œë“œ:"+jp.getSignature().getName());
 	  Object obj=null;
 	  long start=System.currentTimeMillis();
 	  obj=jp.proceed(); // invoke()
 	  long end=System.currentTimeMillis();
-	  System.out.println("¼öÇà ½Ã°£ È®ÀÎ:"+(end-start));
+	  System.out.println("ìˆ˜í–‰ ì‹œê°„ í™•ì¸:"+(end-start));
 	  return obj;
   }
   @AfterReturning(value = "execution(* com.sist.dao.EmpDAO.emp*(..))",returning = "obj")
   public void afterReturning(Object obj)
   {
-  	System.out.println("===== °á°ú°ª ÀÚµ¿ Ã³¸® =====");
-  	// => °øÅëÀûÀ¸·Î ÇÊ¿äÇÑ request¸¦ Àü¼Û => ÇªÅÍ 
+  	System.out.println("===== ê²°ê³¼ê°’ ìžë™ ì²˜ë¦¬ =====");
+  	// => ê³µí†µì ìœ¼ë¡œ í•„ìš”í•œ requestë¥¼ ì „ì†¡ => í‘¸í„° 
   	List<EmpVO> list=(List<EmpVO>)obj;
   	for(EmpVO vo:list)
   	{
@@ -86,9 +86,9 @@ public class EmpAspect {
   @AfterThrowing(value="execution(* com.sist.dao.EmpDAO.emp*(..))",throwing = "ex")
   public void afterThrowing(Throwable ex)
   {
-  	System.out.println("======= ¿¡·¯ ¹ß»ý ======");
+  	System.out.println("======= ì—ëŸ¬ ë°œìƒ ======");
   	ex.printStackTrace();
-  	// °øÅë ¿¡·¯ Ã³¸® 
+  	// ê³µí†µ ì—ëŸ¬ ì²˜ë¦¬ 
   	// => @ControllerAdvice
   }
 }
