@@ -1,13 +1,10 @@
 package com.sist.aop;
 
 public class BoardAspect {
-	public void before()
-	{
-		System.out.println("¿À¶óÅ¬ ¿¬°á!!");
-	}
-	public void after()
-	{
-		System.out.println("¿À¶óÅ¬ ´İ±â!!");
-	}
-
+    public void before() {
+        System.out.println("ì˜¤ë¼í´ ì—°ê²°!!");
+    }
+    public void after() {
+        System.out.println("ì˜¤ë¼í´ ë‹«ê¸°!!");
+    }
 }

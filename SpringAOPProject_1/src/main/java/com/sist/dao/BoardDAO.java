@@ -1,103 +1,123 @@
 package com.sist.dao;
 /*
- * 	°áÇÕ¼ºÀÌ ³·Àº ÇÁ·Î±×·¥ => ¿©·¯¸íÀÇ °³¹ßÀÚ°¡ µ¿½Ã °³¹ß
- *  ---------------- Container / POJO / DI
- *  									| Å¬·¡½º ¸Ş¸ğ¸® ÇÒ´ç½Ã
- *  									  ÇÊ¿äÇÑ °æ¿ì¿¡ ¸â¹öº¯¼ö ÃÊ±âÈ­
- *  					 		 | ´Ù¸¥ Å¬·¡½º¿¡ ¿µÇâÀÌ ¾ø´Â µ¶¸³ Å¬·¡½º
- *  								=> ´Ù¸¥ ÀÎÅÍÆäÀÌ½º / »ó¼ÓÀ» »ç¿ëÇÏÁö ¾Ê´Â ÀÏ¹İ ÀÚ¹Ù
- *  						| Å¬·¡½º¸¦ ¿©·¯°³ ¸ğ¾Æ¼­ °ü¸®
- *  => µ¿ÀÏ ¼Ò½º°¡ ¸¹ÀÌ ¹ß»ı => °øÅëÀ¸·Î »ç¿ëµÇ´Â ¼Ò½º¸£ ¸ğ¾Æ¼­ °ü¸®
- *  					   ============================
- *  					   | °øÅë¸ğµâ => AOP (È¾´ÜÁöÇâ ÇÁ·Î±×·¥)
- *  					     => ¹İº¹ ÄÚµùÀ» ÇÏÁö ¾Ê´Â´Ù
- *  					   | OOP VS AOP
- *  						 => AOP´Â OOPÀÇ ´ÜÁ¡À» º¸¿Ï
- *  						 => CallBack => ÀÚµ¿ È£Ãâ
- *  						 => ¾î¶² ¸Ş¼ÒµåÀÎÁö
- *  						 => ¾î´À ½ÃÁ¡	
- *   try
- *   {
- *   	getConnection() ==> BEFORE
- *   	..
- *   	..
- *   	..
- *   }catch(Exception e)
- *   {
- *   	ex.printStackTrace()
- *   }
- *   finally
- *   {
- *   	disConnection() ==> AFTER
- *   }
- *   @== Before
- *   try
- *   {
- *      ------------------ Around setAutoCommit(false)
- *      ...
- *      ...
- *      ...
- *      ------------------ commit() => Æ®·£Àè¼Ç / ·Î±×ÆÄÀÏ
- *   }catch(Exception e)
- *   {
- *   	@== After-Throwing
- *   }
- *   finally
- *   {
- *   	@== After
- *   }
- *   return ... @== After-Returning
- *   
- *   ±âº»
- *    => ÄÚµù ¼Ò½º
- *    	 -------
- *    	 °øÅë »ç¿ëµÇ´Â ¼Ò½º
- *    	 ÇÙ½É »ç¿ëµÇ´Â ¼Ò½º  ***
+ *    ê²°í•©ì„±ì´ ë‚®ì€ í”„ë¡œê·¸ë¨ => ì—¬ëŸ¬ëª…ì˜ ê°œë°œìê°€ ë™ì‹œ ê°œë°œ 
+ *    ---------------- Container / POJO / DI
+ *                                        | í´ë˜ìŠ¤ ë©”ëª¨ë¦¬ í• ë‹¹ì‹œ 
+ *                                          í•„ìš”í•œ ê²½ìš°ì— ë©¤ë²„ë³€ìˆ˜ ì´ˆê¸°í™”
+ *                                 | ë‹¤ë¥¸ í´ë˜ìŠ¤ì— ì˜í–¥ì´ ì—†ëŠ” ë…ë¦½ í´ë˜ìŠ¤
+ *                                   => ì¸í„°í˜ì´ìŠ¤ / ìƒì†ì„ ì‚¬ìš©í•˜ì§€ ì•ŠëŠ” ì¼ë°˜ ìë°” í´ë˜ìŠ¤ 
+ *                     | í´ë˜ìŠ¤ë¥¼ ì—¬ëŸ¬ê°œ ëª¨ì•„ì„œ ê´€ë¦¬ 
+ *    => ë™ì¼ ì†ŒìŠ¤ê°€ ë§ì´ ë°œìƒ => ê³µí†µìœ¼ë¡œ ì‚¬ìš©ë˜ëŠ” ì†ŒìŠ¤ë¥¼ ëª¨ì•„ì„œ ê´€ë¦¬ 
+ *                          ==========================
+ *                          | ê³µí†µëª¨ë“ˆ => AOP (íš¡ë‹¨ì§€í–¥ í”„ë¡œê·¸ë¨)
+ *                            => ë°˜ë³µ ì½”ë”©ì„ í•˜ì§€ ì•ŠëŠ”ë‹¤
+ *                          | OOP VS AOP
+ *                            => AOPëŠ” OOPì˜ ë‹¨ì ì„ ë³´ì™„ 
+ *                            => CallBack => ìë™ í˜¸ì¶œ 
+ *                            => ì–´ë–¤ ë©”ì†Œë“œì¸ì§€ 
+ *                            => ì–´ëŠ ì‹œì 
+ *    try
+ *    {
+ *        getConnection() ==> BEFORE
+ *        ..
+ *        ..
+ *        ..
+ *    }catch(Exception e)
+ *    {
+ *        ex.printStackTrace()
+ *    }
+ *    finally
+ *    {
+ *       disConnection() ==> AFTER
+ *    }
+ *    
+ *    @== Before
+ *    try
+ *    {
+ *       --------------- Around setAutoCommit(false)
+ *        ...
+ *        ...
+ *       ---------------   commit() => íŠ¸ëœì­ì…˜ / ë¡œê·¸íŒŒì¼ 
+ *    }catch(Exception e)              -------------- ìŠ¤í”„ë§ì—ì„œ ë¼ì´ë¸ŒëŸ¬ë¦¬ ì²˜ë¦¬
+ *    {
+ *        @== After-Throwing
+ *    }
+ *    finally
+ *    {
+ *        @== After
+ *    }
+ *    return ... @== After-Returning
+ *    
+ *    ê¸°ë³¸ 
+ *     => ì½”ë”© ì†ŒìŠ¤ 
+ *        -------
+ *        ê³µí†µ ì‚¬ìš©ë˜ëŠ” ì†ŒìŠ¤
+ *        í•µì‹¬ ì‚¬ìš©ë˜ëŠ” ì†ŒìŠ¤ ***
  */
 public class BoardDAO {
-	public void getConnection()
-	{
-		System.out.println("¿À¶óÅ¬ ¿¬°á!!");
-	}
-	public void disConnection()
-	{
-		System.out.println("¿À¶óÅ¬ ´İ±â!!");
-	}
-	public void boardListData(int page)
-	{
-		//getConnection();
-		System.out.println(page+"ÆäÀÌÁö ¸ñ·Ï Ãâ·Â");
-		//disConnection();
-	}
-	public String boardDetailData(String name)
-	{
-		//getConnection();
-		System.out.println(name+"¿¡ ´ëÇÑ »ó¼¼º¸±â");
-		//disConnection();
-		return name;
-	}
-	public void boardInsert()
-	{
-		//getConnection();
-		System.out.println("°Ô½Ã¹° Ãß°¡ ¿Ï·á");
-		//disConnection();
-	}
-	public void boardUpdate()
-	{
-		//getConnection();
-		System.out.println("°Ô½Ã¹° ¼öÁ¤ ¿Ï·á");
-		//disConnection();
-	}
-	public void boardDelete()
-	{
-		//getConnection();
-		System.out.println("°Ô½Ã¹° »èÁ¦ ¿Ï·á");
-		//disConnection();
-	}
-	public void print()
-	{
-		//getConnection();
-		System.out.println("ÇÁ·Î±×·¥ Á¾·á");
-		//disConnection();
-	}
+ /*
+  public void getConnection()
+  {
+	  System.out.println("ì˜¤ë¼í´ ì—°ê²°!!");
+  }
+  public void disConnection()
+  {
+	  System.out.println("ì˜¤ë¼í´ ë‹«ê¸°!!");
+  }
+ */
+  public void boardListData(int page)
+  {
+	  //getConnection();
+	  System.out.println(page+"í˜ì´ì§€ ëª©ë¡ ì¶œë ¥");
+	  //disConnection();
+  }
+  /*
+   *   public void display()
+   *   {
+   *      => Before
+   *      try
+   *      {
+   *      }catch(Exception e)
+   *      {
+   *         => After-Throwing
+   *      }
+   *      finally
+   *      {
+   *         => After
+   *      }
+   *      
+   *      return;  => After-Returning 
+   *   }
+   *   DI / AOP => MVC(ë¼ì´ë¸ŒëŸ¬ë¦¬)
+   *   -------- XML / Annotation
+   */
+  public String boardDetailData(String name)
+  {
+	  //getConnection();
+	  System.out.println(name+"ì— ëŒ€í•œ ìƒì„¸ë³´ê¸°");
+	  //disConnection();
+	  return name;
+  }
+  public void boardInsert()
+  {
+	  //getConnection();
+	  System.out.println("ê²Œì‹œë¬¼ ì¶”ê°€ ì™„ë£Œ");
+	  //disConnection();
+  }
+  public void boardUpdate()
+  {
+	  //getConnection();
+	  System.out.println("ê²Œì‹œë¬¼ ìˆ˜ì • ì™„ë£Œ");
+	  //disConnection();
+  }
+  public void boardDelete()
+  {
+	  //getConnection();
+	  System.out.println("ê²Œì‹œë¬¼ ì‚­ì œ ì™„ë£Œ");
+	  //disConnection();
+  }
+  public void print()
+  {
+	  System.out.println("í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
+  }
 }
